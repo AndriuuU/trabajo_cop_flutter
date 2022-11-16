@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:trabajo_cop_flutter/providers/login_form_provider.dart';
 import 'package:trabajo_cop_flutter/widgets/widgets.dart';
 
 import '../ui/input_decorations.dart';
+
 
 class LoginScreen extends StatelessWidget{
   @override
@@ -11,13 +14,18 @@ class LoginScreen extends StatelessWidget{
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 250),
+              SizedBox(height: 230),
               CardContainer(
                 child: Column(
                   children: [
                     SizedBox(height: 10),
                     Text('Login', style: Theme.of(context).textTheme.headline4),
-                    SizedBox(height: 30),
+                    SizedBox(height: 20),
+
+                    ChangeNotifierProvider(
+                      create: ( _ ) => LoginFormProvider(),
+                      child: _LoginForn()
+                    ),
 
                   ],
                 )
@@ -37,11 +45,15 @@ class LoginScreen extends StatelessWidget{
 }
 
 class _LoginForn extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    final loginForm=Provider.of<LoginFormProvider>(context);
+
     return Container(
       child: Form(
+        key: loginForm.formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+
         child: Column(
           children: [
             TextFormField(
@@ -52,9 +64,18 @@ class _LoginForn extends StatelessWidget {
                 labelText: 'Correo electronico',
                 prefixIcon: Icons.alternate_email_rounded
               ),
+              onChanged: (value) => loginForm.email=value,
+              validator: (value) {
+
+                String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp  = new RegExp(pattern);
+                return regExp.hasMatch(value ?? '')
+                  ? null
+                  : 'Escribe un correo valido';
+              },
             ),
 
-            SizedBox(height:30),
+            SizedBox(height:20),
 
             TextFormField(
               autocorrect: false,
@@ -63,10 +84,20 @@ class _LoginForn extends StatelessWidget {
               decoration: InputDecorations.authInputDecoration(
                 hintText: '*******',
                 labelText: 'Contraseña',
-                prefixIcon: Icons.lock_outline),
+                prefixIcon: Icons.lock_outline
+              ),
+              onChanged: (value) => loginForm.password=value,
+              validator: (value) {
+
+                return(value != null && value.length>=6)
+                ? null
+                : 'La contraseña tiene que tener mas de 6 caracteres';
+
+              },
             ),
             
-            SizedBox(height:30),
+            
+            SizedBox(height:25),
             
             MaterialButton(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -76,12 +107,23 @@ class _LoginForn extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 60, vertical:15),
                 child:Text(
-                  'Ingresar',
+                  loginForm.isLoading
+                    ? 'Espere'
+                    : 'Ingresar',
                   style: TextStyle( color: Colors.white),
                 )
               ),
-              onPressed: (){
+              onPressed: loginForm.isLoading ? null : () async {
+                FocusScope.of(context).unfocus();
+                if( !loginForm.isValidForm() ) return;
 
+                loginForm.isLoading = true;
+
+                await Future.delayed(Duration (seconds: 2));
+
+                loginForm.isLoading = true;
+                
+                Navigator.pushReplacementNamed(context, 'home');
               },
             )
           ],
