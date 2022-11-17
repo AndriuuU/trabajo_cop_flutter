@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CardContainer extends StatelessWidget {
+class CardLoginContainer extends StatelessWidget {
 
   final Widget child;
 
-  const CardContainer({
+  const CardLoginContainer({
     Key? key,
     required this.child
     }) : super(key: key);
@@ -17,7 +17,7 @@ class CardContainer extends StatelessWidget {
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.all(20),
-        height: 505,
+        height: 370,
         decoration: _createCardShape(),
         child: this.child,
       ),

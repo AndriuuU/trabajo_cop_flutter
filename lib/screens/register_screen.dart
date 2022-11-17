@@ -15,13 +15,13 @@ class RegisterScreen extends StatelessWidget{
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 230),
+              SizedBox(height: 205),
               CardContainer(
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
+                    SizedBox(height: 3),
                     Text('Crear cuenta', style: Theme.of(context).textTheme.headline4),
-                    SizedBox(height: 20),
+                    SizedBox(height: 9),
 
                     ChangeNotifierProvider(
                       create: ( _ ) => LoginFormProvider(),
@@ -32,7 +32,7 @@ class RegisterScreen extends StatelessWidget{
                 )
               ),
 
-              SizedBox( height: 50),
+              SizedBox( height: 25),
               TextButton(
                 onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
                 style: ButtonStyle(
@@ -67,6 +67,33 @@ class _LoginForn extends StatelessWidget {
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecorations.authInputDecoration(
+                hintText: 'Nombre..',
+                labelText: 'Tu nombre',
+                prefixIcon: Icons.account_circle_outlined
+              ),
+              onChanged: (value) => loginForm.name=value,
+              validator: (value) {
+              },
+            ),
+            SizedBox(height:4),
+            TextFormField(
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                hintText: 'Apellido...',
+                labelText: 'Tu apellido',
+                prefixIcon: Icons.add_task_outlined
+              ),
+              onChanged: (value) => loginForm.surname=value,
+              validator: (value) {
+              },
+            ),
+            SizedBox(height:4),
+
+            TextFormField(
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
                 hintText: 'prueba@gmail.com',
                 labelText: 'Correo electronico',
                 prefixIcon: Icons.alternate_email_rounded
@@ -82,7 +109,7 @@ class _LoginForn extends StatelessWidget {
               },
             ),
 
-            SizedBox(height:20),
+            SizedBox(height:4),
 
             TextFormField(
               autocorrect: false,
@@ -96,15 +123,35 @@ class _LoginForn extends StatelessWidget {
               onChanged: (value) => loginForm.password=value,
               validator: (value) {
 
-                return(value != null && value.length>=6)
+                return(value != null && value.length>=6 )
                 ? null
                 : 'La contraseña tiene que tener mas de 6 caracteres';
 
               },
             ),
+            SizedBox(height:4),
+
+            TextFormField(
+              autocorrect: false,
+              obscureText: true,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                hintText: '*******',
+                labelText: 'Repite la contraseña',
+                prefixIcon: Icons.lock_outline
+              ),
+              onChanged: (value) => loginForm.c_password=value,
+              validator: (value) {
+
+                return(value != null && value == loginForm.password)
+                ? null
+                : 'Tiene que ser la misma contraseña';
+
+              },
+            ),
             
             
-            SizedBox(height:25),
+            SizedBox(height:10),
             
             MaterialButton(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -128,7 +175,7 @@ class _LoginForn extends StatelessWidget {
 
                 loginForm.isLoading = true;
                 
-                final String? errorMessage =await authService.createUser('grupo5','andres',loginForm.email, loginForm.password, loginForm.password);
+                final String? errorMessage =await authService.createUser(loginForm.name,loginForm.surname,loginForm.email, loginForm.password, loginForm.password);
                 
                 if(errorMessage==null) {
                   Navigator.pushReplacementNamed(context, 'home');
