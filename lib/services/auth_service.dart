@@ -29,6 +29,44 @@ class AuthService extends ChangeNotifier{
 
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
 
-    print(decodeResp);
+    if(decodeResp.containsKey('idToken')){
+      
+      return null;
+    }else{
+      
+      return decodeResp['error']['message'];
+    }
+
+    
+  }
+
+  Future<String?> login(String email, String password) async {
+    
+    final Map<String, dynamic> authData = {
+      'email': email,
+      'password': password,
+    };
+
+    final url=Uri.http(_baseUrl,'/public/api/login',{});
+    
+    final resp= await http.post(url,headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+          "Authorization": "Some token"
+        },
+        body: json.encode(authData));
+
+    final Map<String, dynamic> decodeResp = json.decode(resp.body);
+    if(decodeResp.containsValue(true)){
+      
+      return decodeResp['data']['type'];
+      
+
+    }else{
+      
+      return null;
+    }
+    
+    
   }
 }

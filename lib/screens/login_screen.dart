@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trabajo_cop_flutter/providers/login_form_provider.dart';
+import 'package:trabajo_cop_flutter/services/services.dart';
 import 'package:trabajo_cop_flutter/widgets/widgets.dart';
 
 import '../ui/input_decorations.dart';
-
 
 class LoginScreen extends StatelessWidget{
   @override
@@ -122,15 +122,32 @@ class _LoginForn extends StatelessWidget {
               onPressed: loginForm.isLoading ? null : () async {
                 
                 FocusScope.of(context).unfocus();
+                final authService=Provider.of<AuthService>(context, listen: false);
+
                 if( !loginForm.isValidForm() ) return;
 
                 loginForm.isLoading = true;
-
-                await Future.delayed(Duration (seconds: 2));
-
-                loginForm.isLoading = true;
                 
-                Navigator.pushReplacementNamed(context, 'home');
+                final String? errorMessage =await authService.login(loginForm.email, loginForm.password);
+
+                if(errorMessage!=null) {
+                  if(errorMessage=="u"){
+                    
+                    Navigator.pushReplacementNamed(context, 'home');
+
+                  }else if(errorMessage=="a"){
+                    //Menu admin
+                    //Navigator.pushReplacementNamed(context, 'admin');
+                    print('admin');
+
+                  }
+
+                }else {
+                  print('Error con el usuario o contraseña');
+                  loginForm.isLoading = false;
+                }             
+               
+                
               },
             )
           ],
