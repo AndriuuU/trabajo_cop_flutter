@@ -29,12 +29,12 @@ class AuthService extends ChangeNotifier{
 
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
 
-    if(decodeResp.containsKey('idToken')){
+    if(decodeResp.containsKey(true)){
       
       return null;
     }else{
       
-      return decodeResp['error']['message'];
+      return decodeResp['message'];
     }
 
     
