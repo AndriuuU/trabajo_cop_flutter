@@ -4,12 +4,16 @@ import '../models/users.dart';
 import '../services/userList_service.dart';
 
 class AdminScreen extends StatelessWidget {
+
   AdminScreen({super.key, Key? admin, Admin});
   List<DataUser> users = [];
+
   @override
   Widget build(BuildContext context) => Scaffold(
+    
         final userListService = Provider.of<UsersListService>(context);
         users = userListService.users.cast<DataUser>();
+
         appBar: AppBar(
           title: const Text('Lista de usuarios registrados'),
           centerTitle: true,

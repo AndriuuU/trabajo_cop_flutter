@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
-        'home': (_) => HomeScreen()
-        //'users': ( _ ) => AdminScreen()
+        'home': (_) => HomeScreen(),
+        'users': (_) => AdminScreen(),
       },
       theme:
           ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),
