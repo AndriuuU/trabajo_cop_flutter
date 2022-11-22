@@ -2,25 +2,28 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class AuthService extends ChangeNotifier{
-  final String _baseUrl='salesin.allsites.es';
+class AuthService extends ChangeNotifier {
+  final String _baseUrl = 'salesin.allsites.es';
+  final storage = FlutterSecureStorage();
   //final String _firebaseToken='';
 
-  Future<String?> createUser(String name,String surname,String email, String password, String c_password) async {
-    
+  Future<String?> createUser(String name, String surname, String email,
+      String password, String c_password) async {
     final Map<String, dynamic> authData = {
       'name': name,
       'surname': surname,
       'email': email,
       'password': password,
       'c_password': c_password,
-      'cicle_id' : 1,
+      'cicle_id': 1,
     };
 
-    final url=Uri.http(_baseUrl,'/public/api/register',{});
-    
-    final resp= await http.post(url,headers: {
+    final url = Uri.http(_baseUrl, '/public/api/register', {});
+
+    final resp = await http.post(url,
+        headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
           "Authorization": "Some token"
@@ -29,27 +32,23 @@ class AuthService extends ChangeNotifier{
 
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
 
-    if(decodeResp.containsKey(true)){
-      
+    if (decodeResp.containsKey(true)) {
       return null;
-    }else{
-      
+    } else {
       return decodeResp['message'];
     }
-
-    
   }
 
   Future<String?> login(String email, String password) async {
-    
     final Map<String, dynamic> authData = {
       'email': email,
       'password': password,
     };
 
-    final url=Uri.http(_baseUrl,'/public/api/login',{});
-    
-    final resp= await http.post(url,headers: {
+    final url = Uri.http(_baseUrl, '/public/api/login', {});
+
+    final resp = await http.post(url,
+        headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
           "Authorization": "Some token"
@@ -57,16 +56,14 @@ class AuthService extends ChangeNotifier{
         body: json.encode(authData));
 
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
-    if(decodeResp.containsValue(true)){
-      
+    if (decodeResp.containsValue(true)) {
       return decodeResp['data']['type'];
-      
-
-    }else{
-      
+    } else {
       return null;
     }
-    
-    
+  }
+
+  Future<String> getToken() async {
+    return await storage.read(key: 'token') ?? '';
   }
 }
