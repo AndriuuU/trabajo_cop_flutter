@@ -2,6 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:trabajo_cop_flutter/models/ciclos_models.dart';
+import 'package:trabajo_cop_flutter/providers/CiclesResponse.dart';
+
+
 
 class AuthService extends ChangeNotifier{
   final String _baseUrl='salesin.allsites.es';
@@ -61,12 +65,38 @@ class AuthService extends ChangeNotifier{
       
       return decodeResp['data']['type'];
       
-
     }else{
       
       return null;
     }
+
+  }
+
+  
+  Future<List<Ciclos>?> getCicles() async {
+    
+    List<Ciclos> listciclos =[];
+    final url=Uri.http(_baseUrl,'/public/api/cicles',{});
+    
+    final resp= await http.get(url);
+    final decodeResp = CiclesResponse.fromJson(resp.body);
+
+    for(int a=0;a<decodeResp.data.length;a++){
+      listciclos.add(decodeResp.data[a]);
+    }
     
     
+    notifyListeners();
+  
+
+    // if(decodeResp.containsValue(true)){
+      
+    //   return decodeResp['data']['id'];
+      
+    // }else{
+      
+    //   return null;
+    // }
+
   }
 }

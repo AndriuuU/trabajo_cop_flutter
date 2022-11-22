@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trabajo_cop_flutter/models/ciclos_models.dart';
+import 'package:trabajo_cop_flutter/providers/CiclesResponse.dart';
 import 'package:trabajo_cop_flutter/providers/login_form_provider.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
 import 'package:trabajo_cop_flutter/widgets/widgets.dart';
@@ -55,7 +57,9 @@ class _LoginForn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginForm=Provider.of<LoginFormProvider>(context);
-
+    final authService=Provider.of<AuthService>(context, listen: false);
+    authService.getCicles();
+    //const List<Ciclos> listCiclos = authService.getCicles();
     return Container(
       child: Form(
         key: loginForm.formKey,
@@ -152,6 +156,31 @@ class _LoginForn extends StatelessWidget {
             
             
             SizedBox(height:10),
+
+            // DropdownButton<String>(
+            //   value: dropdownValue,
+            //   icon: const Icon(Icons.arrow_downward),
+            //   elevation: 16,
+            //   style: const TextStyle(color: Colors.deepPurple),
+            //   underline: Container(
+            //     height: 2,
+            //     color: Colors.deepPurpleAccent,
+            //   ),
+            //   onChanged: (String? value) {
+            //     // This is called when the user selects an item.
+            //     setState(() {
+            //       dropdownValue = value!;
+            //     });
+            //   },
+            //   items: list.map<DropdownMenuItem<String>>((String value) {
+            //     return DropdownMenuItem<String>(
+            //       value: value,
+            //       child: Text(value),
+            //     );
+            //   }).toList(),
+            // ),
+
+            SizedBox(height:10),
             
             MaterialButton(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -167,6 +196,7 @@ class _LoginForn extends StatelessWidget {
                   style: TextStyle( color: Colors.white),
                 )
               ),
+              
               onPressed: loginForm.isLoading ? null : () async {
                 FocusScope.of(context).unfocus();
                 final authService=Provider.of<AuthService>(context, listen: false);
@@ -176,6 +206,7 @@ class _LoginForn extends StatelessWidget {
                 loginForm.isLoading = true;
                 
                 final String? errorMessage =await authService.createUser(loginForm.name,loginForm.surname,loginForm.email, loginForm.password, loginForm.password);
+
                 
                 if(errorMessage==null) {
                   Navigator.pushReplacementNamed(context, 'home');
@@ -192,3 +223,43 @@ class _LoginForn extends StatelessWidget {
     );
   }
 }
+
+//  const List<Ciclos> list = AuthService.getCicles();
+// const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+
+// class DropdownButtonExample extends StatefulWidget {
+//   const DropdownButtonExample({super.key});
+
+//   @override
+//   State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+// }
+
+// class _DropdownButtonExampleState extends State<DropdownButtonExample> {
+//   String dropdownValue = list.first;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<String>(
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.deepPurple),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.deepPurpleAccent,
+//       ),
+//       onChanged: (String? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: list.map<DropdownMenuItem<String>>((String value) {
+//         return DropdownMenuItem<String>(
+//           value: value,
+//           child: Text(value),
+//         );
+//       }).toList(),
+//     );
+//   }
+// }
