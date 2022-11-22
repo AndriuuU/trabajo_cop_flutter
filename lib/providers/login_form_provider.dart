@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trabajo_cop_flutter/providers/CiclesResponse.dart';
 
 class LoginFormProvider extends ChangeNotifier {
 
@@ -8,6 +9,9 @@ class LoginFormProvider extends ChangeNotifier {
   String email='';
   String password='';
   String c_password='';
+  String cicle_id='';
+
+  // List<CiclesResponse> listCicles= [];
 
   bool _isLoading = false;
   bool get isLoading =>_isLoading;

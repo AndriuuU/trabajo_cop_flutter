@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:trabajo_cop_flutter/models/ciclos_models.dart';
+import 'package:trabajo_cop_flutter/providers/CiclesResponse.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthService extends ChangeNotifier {
@@ -63,7 +65,29 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  Future<List<Ciclos>?> getCicles() async {
+    List<Ciclos> listciclos = [];
+    final url = Uri.http(_baseUrl, '/public/api/cicles', {});
+
+    final resp = await http.get(url);
+    final decodeResp = CiclesResponse.fromJson(resp.body);
+
+    for (int a = 0; a < decodeResp.data.length; a++) {
+      listciclos.add(decodeResp.data[a]);
+    }
+  }
+
   Future<String> getToken() async {
     return await storage.read(key: 'token') ?? '';
+    notifyListeners();
+
+    // if(decodeResp.containsValue(true)){
+
+    //   return decodeResp['data']['id'];
+
+    // }else{
+
+    //   return null;
+    // }
   }
 }
