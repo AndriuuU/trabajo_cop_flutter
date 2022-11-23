@@ -5,13 +5,12 @@ import 'package:trabajo_cop_flutter/services/services.dart';
 
 void main() => runApp(AppState());
 
-class AppState extends StatelessWidget{
-  
+class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => AuthService()),
+        ChangeNotifierProvider(create: (_) => AuthService()),
       ],
       child: MyApp(),
     );
@@ -28,13 +27,13 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: 'login',
       routes: {
-        'login': ( _ ) => LoginScreen(),
+        'login': (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
-        'home': ( _ ) => HomeScreen()
+        'home': (_) => HomeScreen(),
+        'users': (_) => AdminScreen(),
       },
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Colors.grey[300]
-      ),
+      theme:
+          ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),
     );
   }
 }
