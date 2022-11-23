@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trabajo_cop_flutter/models/ciclos_models.dart';
-import 'package:trabajo_cop_flutter/providers/CiclesResponse.dart';
+import 'package:trabajo_cop_flutter/models/models.dart';
 import 'package:trabajo_cop_flutter/providers/login_form_provider.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
 import 'package:trabajo_cop_flutter/widgets/widgets.dart';
@@ -27,7 +26,7 @@ class RegisterScreen extends StatelessWidget{
 
                     ChangeNotifierProvider(
                       create: ( _ ) => LoginFormProvider(),
-                      child: _LoginForn()
+                      child: _RegisterForm()
                     ),
 
                   ],
@@ -53,15 +52,17 @@ class RegisterScreen extends StatelessWidget{
   }
 }
 
-class _LoginForn extends StatelessWidget {
+class _RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final getCicles=Provider.of<GetCiclos>(context);
+    List<Ciclos> allCiclos= getCicles.getListCicles();
+    // for(int a=0;a<allCiclos.;a++){
+
+    // }
     final loginForm=Provider.of<LoginFormProvider>(context);
-    final authService=Provider.of<AuthService>(context, listen: false);
-    authService.getCicles();
     //const List<Ciclos> listCiclos = authService.getCicles();
-    return Container(
-      child: Form(
+    return Form(
         key: loginForm.formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
 
@@ -144,7 +145,7 @@ class _LoginForn extends StatelessWidget {
                 labelText: 'Repite la contraseña',
                 prefixIcon: Icons.lock_outline
               ),
-              onChanged: (value) => loginForm.c_password=value,
+              onChanged: (value) => loginForm.cpassword=value,
               validator: (value) {
 
                 return(value != null && value == loginForm.password)
@@ -157,8 +158,8 @@ class _LoginForn extends StatelessWidget {
             
             SizedBox(height:10),
 
-            // DropdownButton<String>(
-            //   value: dropdownValue,
+            // DropdownButton<Ciclos>(
+            //   value: listCiclos.getName(),
             //   icon: const Icon(Icons.arrow_downward),
             //   elevation: 16,
             //   style: const TextStyle(color: Colors.deepPurple),
@@ -219,7 +220,7 @@ class _LoginForn extends StatelessWidget {
             )
           ],
         )
-      ),
+      
     );
   }
 }

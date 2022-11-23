@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trabajo_cop_flutter/providers/CiclesResponse.dart';
+import 'package:trabajo_cop_flutter/models/models.dart';
 
 class LoginFormProvider extends ChangeNotifier {
 
@@ -8,8 +8,8 @@ class LoginFormProvider extends ChangeNotifier {
   String surname='';
   String email='';
   String password='';
-  String c_password='';
-  String cicle_id='';
+  String cpassword='';
+  int cicleid=0;
 
   // List<CiclesResponse> listCicles= [];
 
