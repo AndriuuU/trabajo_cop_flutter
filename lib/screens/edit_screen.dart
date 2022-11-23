@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/users.dart';
-import '../services/userList_service.dart';
+import '../models/models.dart';
+import '../services/services.dart';
 
 class EditScreen extends StatelessWidget {
   final User users;
@@ -17,7 +17,7 @@ class EditScreen extends StatelessWidget {
 
 class _EditUser extends State<EditScreen> {
   void editUser(
-      {Users users, String email, String password, String name}) async {
+      {User users, String email, String password, String name}) async {
     final response = await http.put(
         Uri.parse(
           "http://10.0.2.2:1337/apis/${users.id}",
