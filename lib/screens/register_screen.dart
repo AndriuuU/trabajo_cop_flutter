@@ -56,7 +56,7 @@ class _RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final getCicles=Provider.of<GetCiclos>(context);
-    List<Ciclos> allCiclos= getCicles.getListCicles();
+    List<Ciclos> allCiclos= getCicles.getListCicles().cast<List<Ciclos>>();
     // for(int a=0;a<allCiclos.;a++){
 
     // }

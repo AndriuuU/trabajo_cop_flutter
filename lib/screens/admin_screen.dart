@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/users.dart';
-import '../services/userList_service.dart';
+import '../services/services.dart';
 
 class AdminScreen extends StatelessWidget {
   AdminScreen({Key? key}) : super(key: key);
   List<DataUser> users = [];
+  
 
   //void deleteUser()async{
    //         await http.delete(Uri.parse("http://10.0.2.2:1337/apis/${widget.users.id}"));
@@ -16,10 +17,10 @@ class AdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-
+        
         final userListService = Provider.of<UsersListService>(context);
         users = userListService.users.cast<DataUser>();
-
+        
         appBar: AppBar(
           title: const Text('Lista de usuarios registrados'),
           centerTitle: true,
