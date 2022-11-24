@@ -3,16 +3,15 @@ import 'package:provider/provider.dart';
 import '../models/users.dart';
 import '../services/services.dart';
 
-class AdminScreen extends StatelessWidget {
+class AdminScreen extends StatefulWidget {
   AdminScreen({Key? key}) : super(key: key);
-  List<DataUser> users = [];
 
-  //void deleteUser()async{
-  //         await http.delete(Uri.parse("http://10.0.2.2:1337/apis/${widget.users.id}"));
-  //        Navigator.of(context).pushAndRemoveUntil(
-  //             MaterialPageRoute(builder: (BuildContext context) => DisplayUsers()),
-  //            (Route<dynamic> route) => false);
-  //      }
+  @override
+  State<AdminScreen> createState() => _AdminScreenState();
+}
+
+class _AdminScreenState extends State<AdminScreen> {
+  List<DataUser> users = [];
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +19,7 @@ class AdminScreen extends StatelessWidget {
     users = userListService.users.cast<DataUser>();
 
     return MaterialApp(
+        // debugShowCheckedModeBanner:false;
         home: Scaffold(
       appBar: AppBar(
         title: const Text('Lista de usuarios registrados'),
@@ -35,15 +35,12 @@ class AdminScreen extends StatelessWidget {
             subtitle: Text(user.email),
             trailing: IconButton(
               icon: const Icon(Icons.delete),
-              onPressed: () =>
-                  {Navigator.pushReplacementNamed(context, 'admin')},
+              onPressed: () {
+                setState(() {
+                  users.removeAt(index);
+                });
+              },
             ),
-
-            // trailing: IconButton(
-            //     icon: const Icon(Icons.delete),
-            //     onPressed: () => {Navigator.pushReplacementNamed(context, 'admin')},
-
-            //   ),
           );
         },
       ),
