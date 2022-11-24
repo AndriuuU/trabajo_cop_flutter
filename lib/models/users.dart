@@ -22,23 +22,23 @@ class User {
 
 class DataUser {
   DataUser({
-    this.id,
-    this.name,
+    required this.id,
+    required this.name,
     this.surname,
-    this.cicleId,
-    this.actived,
-    this.email,
+    required this.cicleId,
+    required this.actived,
+    required this.email,
     this.type,
     this.numOffersApplied,
     this.createdAt,
   });
 
-  int? id;
-  String? name;
+  int id;
+  String name;
   String? surname;
-  int? cicleId;
-  int? actived;
-  String? email;
+  int cicleId;
+  int actived;
+  String email;
   String? type;
   int? numOffersApplied;
   String? createdAt;

@@ -16,33 +16,52 @@ class AdminScreen extends StatelessWidget {
     //      }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) {
         
         final userListService = Provider.of<UsersListService>(context);
         users = userListService.users.cast<DataUser>();
-        
-        appBar: AppBar(
-          title: const Text('Lista de usuarios registrados'),
-          centerTitle: true,
-        ),
-        body: ListView.builder(
-          itemCount: 9999
+
+        return MaterialApp(
+          home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Lista de usuarios registrados'),
+            centerTitle: true,
+          ),
+
+          body: ListView.builder(
+          itemCount: users.length,
           itemBuilder: (context, index) {
             final user = users[index];
-          }
-            child: ListTile(
+            
+
+            return ListTile(
               title: Text(user.name),
               subtitle: Text(user.email),
-              trailing: const IconButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, 'edit');
-                icon: Icon(Icons.edit) 
-              ),
-              trailing: const IconButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, 'admin');
-                icon: Icon(Icons.delete) 
-              ),
+              trailing: 
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => {Navigator.pushReplacementNamed(context, 'edit')},
+                ), 
+                
+                // trailing: IconButton(
+                //     icon: const Icon(Icons.delete),
+                //     onPressed: () => {Navigator.pushReplacementNamed(context, 'admin')},
+                    
+                //   ),
+                  
+              );
+            },
             ),
-          ),
+          )
         );
-      
+
+  }
+}
+
+abstract class ListItem {
+  /// The title line to show in a list item.
+  Widget buildTitle(BuildContext context);
+
+  /// The subtitle line, if any, to show in a list item.
+  Widget buildSubtitle(BuildContext context);
 }

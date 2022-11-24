@@ -58,7 +58,7 @@ class _RegisterForm extends StatelessWidget {
     final getCicles=Provider.of<GetCiclos>(context);
     List<Ciclos> allCiclos= getCicles.getListCicles().cast<List<Ciclos>>();
     // for(int a=0;a<allCiclos.;a++){
-
+    print(allCiclos);
     // }
     final loginForm=Provider.of<LoginFormProvider>(context);
     //const List<Ciclos> listCiclos = authService.getCicles();
