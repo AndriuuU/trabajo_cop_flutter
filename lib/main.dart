@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         'login': (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
         'home': (_) => HomeScreen(),
-        'users': (_) => AdminScreen(),
+        'admin': (_) => AdminScreen(),
       },
       theme:
           ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),
