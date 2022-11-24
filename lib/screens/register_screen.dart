@@ -55,10 +55,10 @@ class RegisterScreen extends StatelessWidget{
 class _RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final getCicles=Provider.of<GetCiclos>(context);
-    List<Ciclos> allCiclos= getCicles.getListCicles().cast<List<Ciclos>>();
+    // final getCicles=Provider.of<GetCiclos>(context);
+    // List<Ciclos> allCiclos= getCicles.getListCicles().cast<List<Ciclos>>();
     // for(int a=0;a<allCiclos.;a++){
-    print(allCiclos);
+    
     // }
     final loginForm=Provider.of<LoginFormProvider>(context);
     //const List<Ciclos> listCiclos = authService.getCicles();
@@ -158,8 +158,9 @@ class _RegisterForm extends StatelessWidget {
             
             SizedBox(height:10),
 
+            DropdownButtonExample(),
             // DropdownButton<Ciclos>(
-            //   value: listCiclos.getName(),
+            //   value: allCiclos,
             //   icon: const Icon(Icons.arrow_downward),
             //   elevation: 16,
             //   style: const TextStyle(color: Colors.deepPurple),
@@ -228,39 +229,45 @@ class _RegisterForm extends StatelessWidget {
 //  const List<Ciclos> list = AuthService.getCicles();
 // const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
-// class DropdownButtonExample extends StatefulWidget {
-//   const DropdownButtonExample({super.key});
+class DropdownButtonExample extends StatefulWidget {
+  const DropdownButtonExample({super.key});
 
-//   @override
-//   State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
-// }
+  @override
+  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+}
 
-// class _DropdownButtonExampleState extends State<DropdownButtonExample> {
-//   String dropdownValue = list.first;
+class _DropdownButtonExampleState extends State<DropdownButtonExample> {
+ 
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownButton<String>(
-//       value: dropdownValue,
-//       icon: const Icon(Icons.arrow_downward),
-//       elevation: 16,
-//       style: const TextStyle(color: Colors.deepPurple),
-//       underline: Container(
-//         height: 2,
-//         color: Colors.deepPurpleAccent,
-//       ),
-//       onChanged: (String? value) {
-//         // This is called when the user selects an item.
-//         setState(() {
-//           dropdownValue = value!;
-//         });
-//       },
-//       items: list.map<DropdownMenuItem<String>>((String value) {
-//         return DropdownMenuItem<String>(
-//           value: value,
-//           child: Text(value),
-//         );
-//       }).toList(),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+
+    final getCicles=Provider.of<GetCiclos>(context);
+    List<Ciclos> allCiclos= getCicles.listciclos;
+    print(allCiclos);
+    Ciclos dropdownValue = allCiclos.first;
+
+    return DropdownButton<Ciclos>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (Ciclos? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: allCiclos.map<DropdownMenuItem<Ciclos>>((Ciclos value) {
+        return DropdownMenuItem<Ciclos>(
+          value: value,
+          child: Text(value.name),
+        );
+      }).toList(),
+    );
+  }
+}

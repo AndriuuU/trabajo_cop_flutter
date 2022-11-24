@@ -91,29 +91,3 @@ class AuthService extends ChangeNotifier {
   }
 }
 
-class GetCiclos extends ChangeNotifier {
-
-    final String _baseUrl='salesin.allsites.es';
-    List<Ciclos> listciclos=[];
-
-    GetCiclos() {
-      print('Inicializando ciclos');
-      this.getListCicles();
-    }
-    
-    getListCicles() async {
-      print('Inicializado ciclos');
-      
-      final url=Uri.http(_baseUrl,'/public/api/cicles');
-      
-      final resp= await http.get(url);
-      final decodeResp = CiclesResponse.fromJson(resp.body);
-      
-      // for(int a=0;a<decodeResp.data.length;a++){
-        listciclos=decodeResp.data;
-      // }
-      //print(listciclos);
-      
-      notifyListeners();
-    }
-}
