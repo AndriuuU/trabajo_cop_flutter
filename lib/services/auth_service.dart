@@ -11,14 +11,14 @@ class AuthService extends ChangeNotifier {
   //final String _firebaseToken='';
 
   Future<String?> createUser(String name, String surname, String email,
-      String password, String c_password) async {
+      String password, String c_password,int cicle_id) async {
     final Map<String, dynamic> authData = {
       'name': name,
       'surname': surname,
       'email': email,
       'password': password,
       'c_password': c_password,
-      'cicle_id': 1,
+      'cicle_id': cicle_id,
     };
 
     final url = Uri.http(_baseUrl, '/public/api/register', {});
@@ -64,17 +64,17 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  Future<List<Ciclos>?> getCicles() async {
-    List<Ciclos> listciclos = [];
-    final url = Uri.http(_baseUrl, '/public/api/cicles', {});
+  // Future<List<Ciclos>?> getCicles() async {
+  //   List<Ciclos> listciclos = [];
+  //   final url = Uri.http(_baseUrl, '/public/api/cicles', {});
 
-    final resp = await http.get(url);
-    final decodeResp = CiclesResponse.fromJson(resp.body);
+  //   final resp = await http.get(url);
+  //   final decodeResp = CiclesResponse.fromJson(resp.body);
 
-    for (int a = 0; a < decodeResp.data.length; a++) {
-      listciclos.add(decodeResp.data[a]);
-    }
-  }
+  //   for (int a = 0; a < decodeResp.data.length; a++) {
+  //     listciclos.add(decodeResp.data[a]);
+  //   }
+  // }
 
   Future<String> getToken() async {
     return await storage.read(key: 'token') ?? '';

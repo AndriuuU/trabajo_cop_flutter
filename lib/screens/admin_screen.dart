@@ -16,7 +16,8 @@ class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
     final userListService = Provider.of<UsersListService>(context);
-    users = userListService.users.cast<DataUser>();
+    users = userListService.listUsers;
+    print(users);
 
     return MaterialApp(
         // debugShowCheckedModeBanner:false;

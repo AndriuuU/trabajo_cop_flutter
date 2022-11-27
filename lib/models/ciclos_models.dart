@@ -11,14 +11,6 @@ class Ciclos {
     String name;
     String img;
     
-    int get idCiclo {
-      return id;
-    }
-
-    String get nameCiclo {
-      return name;
-    }
-  
     factory Ciclos.fromJson(String str) => Ciclos.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
