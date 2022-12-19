@@ -6,19 +6,19 @@ import 'package:trabajo_cop_flutter/models/models.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthService extends ChangeNotifier {
-  final String _baseUrl = 'salesin.allsites.es';
+  final String _baseUrl = 'semillero.allsites.es';
   final storage = FlutterSecureStorage();
   //final String _firebaseToken='';
 
   Future<String?> createUser(String name, String surname, String email,
       String password, String c_password,int cicle_id) async {
     final Map<String, dynamic> authData = {
-      'name': name,
-      'surname': surname,
+      'firstname': name,
+      'secondname': surname,
       'email': email,
       'password': password,
       'c_password': c_password,
-      'cicle_id': cicle_id,
+      'company_id': cicle_id,
     };
 
     final url = Uri.http(_baseUrl, '/public/api/register', {});
