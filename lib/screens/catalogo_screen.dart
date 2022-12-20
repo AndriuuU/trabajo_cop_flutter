@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+// void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class CatalogoScreens extends StatelessWidget {
+  // const MyApp({super.key});
 
   static const String _title = 'Catálogo';
 
@@ -11,19 +11,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: _title,
-      home: MyStatefulWidget(),
+      home: CatalogoStateWidget(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
+class CatalogoStateWidget extends StatefulWidget {
+  const CatalogoStateWidget({super.key});
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<CatalogoStateWidget> createState() => _CatalogoStateWidgetState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _CatalogoStateWidgetState extends State<CatalogoStateWidget> {
   int _selectedIndex = 0;
   final ScrollController _homeController = ScrollController();
 

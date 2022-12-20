@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trabajo_cop_flutter/screens/catalogo_screen.dart';
 import 'package:trabajo_cop_flutter/screens/screens.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
 
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
         'register': (_) => RegisterScreen(),
         'home': (_) => HomeScreen(),
         'admin': (_) => AdminScreen(),
+        'catalogo': (_) => CatalogoScreens(),
+        
       },
       theme:
           ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),

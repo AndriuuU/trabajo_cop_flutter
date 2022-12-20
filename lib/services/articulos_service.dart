@@ -7,25 +7,25 @@ class articulosService extends ChangeNotifier {
 
 final String _baseUrl='semillero.allsites.es';
   
-    GetArticulos() {
+    // GetArticulos() {
       
-      this.getListArticulos();
-    }
+    //   this.getListArticulos();
+    // }
 
-    List<Articulos> listArticulos=[];
+    // List<Articulos> listArticulos=[];
     
-    getListArticulos() async {
+    // getListArticulos() async {
       
-      final url=Uri.http(_baseUrl,'/public/api/cicles');
-      final resp= await http.get(url);
-      var decodeResp = CiclesResponse.fromJson(resp.body);
+    //   final url=Uri.http(_baseUrl,'/public/api/cicles');
+    //   final resp= await http.get(url);
+    //   var decodeResp = CiclesResponse.fromJson(resp.body);
   
-      // for(int a=0;a<decodeResp.data.length;a++){
-        listArticulos=decodeResp.data;
+    //   // for(int a=0;a<decodeResp.data.length;a++){
+    //     listArticulos=decodeResp.data;
         
-      // }
-      //print(listciclos);
+    //   // }
+    //   //print(listciclos);
      
-      notifyListeners();
-    }
+    //   notifyListeners();
+    // }
 }
