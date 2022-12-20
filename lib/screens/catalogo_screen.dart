@@ -47,18 +47,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: const Text('Catálogo'),
       ),
       body: _listViewBody(),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.open_in_new_rounded),
-            label: 'Open Dialog',
+            icon: Icon(Icons.add),
+            label: 'Add article',
+            // onPressed: addArticulo(),
           ),
         ],
         currentIndex: _selectedIndex,
@@ -105,4 +106,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
     );
   }
+
+  // void addArticulo() {
+  //   setState(() {
+  //     articles.add(articles[0]);
+  //   });
+  // }
 }
