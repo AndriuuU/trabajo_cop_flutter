@@ -1,11 +1,11 @@
-import 'dart:convert';
+// import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+// import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
 
-class articulosService extends ChangeNotifier {
+// class articulosService extends ChangeNotifier {
 
-final String _baseUrl='semillero.allsites.es';
+// final String _baseUrl='semillero.allsites.es';
   
     // GetArticulos() {
       
@@ -28,4 +28,4 @@ final String _baseUrl='semillero.allsites.es';
      
     //   notifyListeners();
     // }
-}
+// }
