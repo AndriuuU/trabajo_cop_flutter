@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trabajo_cop_flutter/screens/catalogo_screen.dart';
 
 class HomeScreen extends StatelessWidget{
 
@@ -61,6 +62,8 @@ class _HomeStateWidgetState extends State<HomeStateWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
             label: 'Catálogo',
+            // onPressed: () => (
+            //   Navigator.pushReplacementNamed(context, 'home')),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
