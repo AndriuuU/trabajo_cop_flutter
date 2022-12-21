@@ -4,12 +4,12 @@ class Ciclos {
     Ciclos({
         required this.id,
         required this.name,
-        required this.img,
+        this.img,
     });
 
     int id;
     String name;
-    String img;
+    String ? img;
     
     factory Ciclos.fromJson(String str) => Ciclos.fromMap(json.decode(str));
 

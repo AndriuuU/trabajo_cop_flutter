@@ -17,7 +17,7 @@ class GetCiclos extends ChangeNotifier {
     
     getListCicles() async {
       
-      final url=Uri.http(_baseUrl,'/public/api/cicles');
+      final url=Uri.http(_baseUrl,'/public/api/companies');
       final resp= await http.get(url);
       var decodeResp = CiclesResponse.fromJson(resp.body);
   
