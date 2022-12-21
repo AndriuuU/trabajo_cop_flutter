@@ -1,18 +1,17 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:trabajo_cop_flutter/models/models.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 class AuthService extends ChangeNotifier {
   final String _baseUrl = 'semillero.allsites.es';
   final storage = FlutterSecureStorage();
   //final String _firebaseToken='';
 
-  Future<String> readToken() async {
-    return await storage.read(key: 'token') ?? '';
-  }
+  
   
   Future<String?> createUser(String name, String surname, String email,
       String password, String c_password,int cicle_id) async {
@@ -62,6 +61,9 @@ class AuthService extends ChangeNotifier {
 
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
     if (decodeResp.containsValue(true)) {
+      await storage.write(key: 'token', value: decodeResp['data']['token']);
+
+      // print(decodeResp['data']['token']);
       return decodeResp['data']['type'];
     } else {
       return null;
@@ -80,9 +82,9 @@ class AuthService extends ChangeNotifier {
   //   }
   // }
 
-  Future<String> getToken() async {
-    return await storage.read(key: 'token') ?? '';
-    notifyListeners();
+  // Future<String> getToken() async {
+  //   return await storage.read(key: 'token') ?? '';
+   
 
     // if(decodeResp.containsValue(true)){
 
@@ -92,6 +94,11 @@ class AuthService extends ChangeNotifier {
 
     //   return null;
     // }
+  // }
+  Future<String> readToken() async {
+    
+    return await storage.read(key: 'token') ?? '';
+    
   }
 }
  

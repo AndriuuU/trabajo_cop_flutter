@@ -30,11 +30,12 @@ class CatalogoStateWidget extends StatefulWidget {
 class CatalogoStateWidgetState extends State<CatalogoStateWidget> {
   int _selectedIndex = 0;
   final ScrollController _homeController = ScrollController();
-  
+  final articleservice =articulosService();
+  List<Articles> allArticles =[];
   
   Widget _listViewBody() {
     final getArticle=Provider.of<articulosService>(context);
-    List<Articles> allArticles= getArticle.GetArticulos();
+   getArticle.GetArticulos();
 
     return ListView.builder(
         controller: _homeController,

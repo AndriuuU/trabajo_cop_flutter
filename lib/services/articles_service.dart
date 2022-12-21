@@ -10,31 +10,37 @@ import 'auth_service.dart';
 class articulosService extends ChangeNotifier {
   final String _baseUrl = 'semillero.allsites.es';
   
+  List<Articles> listArticulos = [];
+  
 
   GetArticulos() {
      
+
     this.getListArticulos();
   }
 
-  List<Articles> listArticulos = [];
+  
 
   getListArticulos() async {
-    String? token = await AuthService().readToken();
+    String token = await AuthService().readToken();
+    
     final url = Uri.http(_baseUrl, '/public/api/articles');
     final resp = await http.get(url,
         headers: {
-          'Content-type': 'application/json',
           'Accept': 'application/json',
-          "Authorization": "Some $token"
+          "Authorization": "Bearer $token"
         });
-    var decodeResp = ArticlesResponse.fromJson(resp.body);
-
+    final Map<String, dynamic> decodedResp = json.decode(resp.body);
+    var a = ArticlesResponse.fromJson(resp.body);
+    print(a);
     // for(int a=0;a<decodeResp.data.length;a++){
-    listArticulos = decodeResp.data;
-
+    listArticulos = a.data;
+    print(listArticulos);
+    
     // }
     //print(listciclos);
-
+    
     notifyListeners();
+    return listArticulos;
   }
 }
