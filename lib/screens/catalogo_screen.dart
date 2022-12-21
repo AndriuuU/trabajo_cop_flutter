@@ -42,9 +42,11 @@ class CatalogoStateWidgetState extends State<CatalogoStateWidget> {
         itemCount: listArticulos.length,
         itemBuilder: (context, index) {
           return Card(
-            margin: const EdgeInsets.symmetric(vertical: 5),
-              color: Colors.amberAccent,
+            
+            margin: const EdgeInsets.symmetric(vertical: 10,),
+              color: Theme.of(context).colorScheme.surfaceVariant,
               child: ListTile(
+                
                 title: Text(
                   listArticulos[index].name,
                   style: const TextStyle(fontSize: 24),
@@ -53,6 +55,7 @@ class CatalogoStateWidgetState extends State<CatalogoStateWidget> {
                   listArticulos[index].description,
                   style: const TextStyle(fontSize: 24),
                 ),
+                
               ),
           );
 
