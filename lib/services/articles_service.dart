@@ -7,7 +7,7 @@ import '../models/articles_models.dart';
 import '../models/articles_response.dart';
 import 'auth_service.dart';
 
-class articulosService extends ChangeNotifier {
+class GetArticulos extends ChangeNotifier {
   final String _baseUrl = 'semillero.allsites.es';
   
   // List<Articles> listArticulos = [];
