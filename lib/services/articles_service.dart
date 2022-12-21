@@ -13,7 +13,6 @@ class articulosService extends ChangeNotifier {
 
   GetArticulos() {
      
-     
     this.getListArticulos();
   }
 
@@ -22,7 +21,12 @@ class articulosService extends ChangeNotifier {
   getListArticulos() async {
     String? token = await AuthService().readToken();
     final url = Uri.http(_baseUrl, '/public/api/articles');
-    final resp = await http.get(url);
+    final resp = await http.get(url,
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+          "Authorization": "Some $token"
+        });
     var decodeResp = ArticlesResponse.fromJson(resp.body);
 
     // for(int a=0;a<decodeResp.data.length;a++){

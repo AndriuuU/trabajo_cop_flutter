@@ -116,7 +116,7 @@ class _LoginForn extends StatelessWidget {
 
                         if (errorMessage != null) {
                           if (errorMessage == "u") {
-                            Navigator.pushReplacementNamed(context, 'home');
+                            Navigator.pushReplacementNamed(context, 'catalogo');
                           } else if (errorMessage == "a") {
                             //Menu admin
                             Navigator.pushReplacementNamed(context, 'admin');

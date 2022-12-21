@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/models.dart';
+import '../services/services.dart';
 
 // void main() => runApp(const MyApp());
 
@@ -20,27 +24,41 @@ class CatalogoStateWidget extends StatefulWidget {
   const CatalogoStateWidget({super.key});
 
   @override
-  State<CatalogoStateWidget> createState() => _CatalogoStateWidgetState();
+  State<CatalogoStateWidget> createState() => CatalogoStateWidgetState();
 }
 
-class _CatalogoStateWidgetState extends State<CatalogoStateWidget> {
+class CatalogoStateWidgetState extends State<CatalogoStateWidget> {
   int _selectedIndex = 0;
   final ScrollController _homeController = ScrollController();
-
+  
+  
   Widget _listViewBody() {
-    return ListView.separated(
+    final getArticle=Provider.of<articulosService>(context);
+    List<Articles> allArticles= getArticle.GetArticulos();
+
+    return ListView.builder(
         controller: _homeController,
-        itemBuilder: (BuildContext context, int index) {
-          return Center(
-            child: Text(
-              'Artículo $index',
-            ),
+        itemCount: allArticles.length,
+        itemBuilder: (context, index) {
+          return Card(
+            margin: const EdgeInsets.symmetric(vertical: 5),
+              color: Colors.amberAccent,
+              child: ListTile(
+                title: Text(
+                  allArticles[index].name,
+                  style: const TextStyle(fontSize: 24),
+                ),
+                trailing: Text(
+                  allArticles[index].description,
+                  style: const TextStyle(fontSize: 24),
+                ),
+              ),
           );
+
         },
-        separatorBuilder: (BuildContext context, int index) => const Divider(
-              thickness: 1,
-            ),
-        itemCount: 50);
+          
+          
+        );
   }
 
   @override
