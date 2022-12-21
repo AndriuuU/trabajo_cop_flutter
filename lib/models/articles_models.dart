@@ -17,11 +17,11 @@ class Articles {
   int id;
   String name;
   String description;
-  int price_min;
-  int price_max;
+  String price_min;
+  String price_max;
   String color_name;
-  int weight;
-  int size;
+  String weight;
+  String size;
   int family_id;
   int deleted;
 

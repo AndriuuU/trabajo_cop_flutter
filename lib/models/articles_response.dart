@@ -4,12 +4,12 @@ import 'package:trabajo_cop_flutter/models/models.dart';
 
 class ArticlesResponse {
   ArticlesResponse({
-    required this.success,
+     this.success,
     required this.data,
     required this.message,
   });
 
-  bool success;
+  bool? success;
   List<Articles> data;
   String message;
 

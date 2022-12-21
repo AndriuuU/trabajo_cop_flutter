@@ -31,26 +31,26 @@ class CatalogoStateWidgetState extends State<CatalogoStateWidget> {
   int _selectedIndex = 0;
   final ScrollController _homeController = ScrollController();
   final articleservice =articulosService();
-  List<Articles> allArticles =[];
+  // List<Articles> listArticulos =[];
   
-  Widget _listViewBody() {
+  Widget _listViewBody(BuildContext context) {
     final getArticle=Provider.of<articulosService>(context);
-   getArticle.GetArticulos();
+    List<Articles> listArticulos=getArticle.listArticulos;
 
     return ListView.builder(
         controller: _homeController,
-        itemCount: allArticles.length,
+        itemCount: listArticulos.length,
         itemBuilder: (context, index) {
           return Card(
             margin: const EdgeInsets.symmetric(vertical: 5),
               color: Colors.amberAccent,
               child: ListTile(
                 title: Text(
-                  allArticles[index].name,
+                  listArticulos[index].name,
                   style: const TextStyle(fontSize: 24),
                 ),
                 trailing: Text(
-                  allArticles[index].description,
+                  listArticulos[index].description,
                   style: const TextStyle(fontSize: 24),
                 ),
               ),
@@ -68,7 +68,7 @@ class CatalogoStateWidgetState extends State<CatalogoStateWidget> {
       appBar: AppBar(
         title: const Text('Catálogo'),
       ),
-      body: _listViewBody(),
+      body: _listViewBody(context),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(

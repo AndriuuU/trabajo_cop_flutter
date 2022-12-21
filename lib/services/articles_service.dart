@@ -10,7 +10,7 @@ import 'auth_service.dart';
 class articulosService extends ChangeNotifier {
   final String _baseUrl = 'semillero.allsites.es';
   
-  List<Articles> listArticulos = [];
+  // List<Articles> listArticulos = [];
   
 
   GetArticulos() {
@@ -19,7 +19,7 @@ class articulosService extends ChangeNotifier {
     this.getListArticulos();
   }
 
-  
+  List<Articles> listArticulos = [];
 
   getListArticulos() async {
     String token = await AuthService().readToken();
@@ -30,17 +30,17 @@ class articulosService extends ChangeNotifier {
           'Accept': 'application/json',
           "Authorization": "Bearer $token"
         });
-    final Map<String, dynamic> decodedResp = json.decode(resp.body);
+    //final Map<String, dynamic> decodedResp = json.decode(resp.body);
     var a = ArticlesResponse.fromJson(resp.body);
-    print(a);
+    
     // for(int a=0;a<decodeResp.data.length;a++){
     listArticulos = a.data;
-    print(listArticulos);
+    // print(listArticulos);
     
     // }
     //print(listciclos);
     
     notifyListeners();
-    return listArticulos;
+    // return listArticulos;
   }
 }
