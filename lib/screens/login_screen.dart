@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:trabajo_cop_flutter/providers/login_form_provider.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
 import 'package:trabajo_cop_flutter/widgets/widgets.dart';
-
 import '../ui/input_decorations.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -116,7 +115,7 @@ class _LoginForn extends StatelessWidget {
 
                         if (errorMessage != null) {
                           if (errorMessage == "u") {
-                            Navigator.pushReplacementNamed(context, 'catalogo');
+                            Navigator.pushReplacementNamed(context, 'home');
                           } else if (errorMessage == "a") {
                             //Menu admin
                             Navigator.pushReplacementNamed(context, 'admin');
