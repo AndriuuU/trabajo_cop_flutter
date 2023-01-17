@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trabajo_cop_flutter/screens/catalogo_screen.dart';
 import 'package:trabajo_cop_flutter/screens/screens.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
 
@@ -22,12 +21,9 @@ class AppState extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Material App',
       initialRoute: 'login',
       routes: {
@@ -35,7 +31,8 @@ class MyApp extends StatelessWidget {
         'register': (_) => RegisterScreen(),
         'home': (_) => HomeScreen(),
         'admin': (_) => AdminScreen(),
-        'catalogo': (_) => CatalogoScreens(),
+        'catalogo': (_) => CatalogoScreen(),
+        'pedidos': (_) => PedidosScreen(),
       },
       theme:
           ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),

@@ -4,65 +4,45 @@ import 'package:provider/provider.dart';
 import '../models/models.dart';
 import '../services/services.dart';
 
-// void main() => runApp(const MyApp());
-
-class CatalogoScreens extends StatelessWidget {
-  // const MyApp({super.key});
-
-  static const String _title = 'Catálogo';
+class CatalogoScreen extends StatefulWidget {
+  CatalogoScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: CatalogoStateWidget(),
-    );
-  }
+  State<CatalogoScreen> createState() => _CatalogoScreenState();
 }
 
-class CatalogoStateWidget extends StatefulWidget {
-  const CatalogoStateWidget({super.key});
-
-  @override
-  State<CatalogoStateWidget> createState() => CatalogoStateWidgetState();
-}
-
-class CatalogoStateWidgetState extends State<CatalogoStateWidget> {
+class _CatalogoScreenState extends State<CatalogoScreen> {
   int _selectedIndex = 0;
   final ScrollController _homeController = ScrollController();
-  final articleservice =GetArticulos();
+  final articleservice = GetArticulos();
   // List<Articles> listArticulos =[];
-  
-  Widget _listViewBody(BuildContext context) {
-    final getArticle=Provider.of<GetArticulos>(context);
-    List<Articles> listArticulos=getArticle.listArticulos;
-    
-    return ListView.builder(
-        controller: _homeController,
-        itemCount: listArticulos.length,
-        itemBuilder: (context, index) {
-          return Card(
-            
-            margin: const EdgeInsets.symmetric(vertical: 10,),
-              color: Theme.of(context).colorScheme.surfaceVariant,
-              child: ListTile(
-                
-                title: Text(
-                  listArticulos[index].name,
-                  style: const TextStyle(fontSize: 24),
-                ),
-                trailing: Text(
-                  listArticulos[index].description,
-                  style: const TextStyle(fontSize: 24),
-                ),
-                
-              ),
-          );
 
-        },
-          
-          
+  Widget _listViewBody(BuildContext context) {
+    final getArticle = Provider.of<GetArticulos>(context);
+    List<Articles> listArticulos = getArticle.listArticulos;
+
+    return ListView.builder(
+      controller: _homeController,
+      itemCount: listArticulos.length,
+      itemBuilder: (context, index) {
+        return Card(
+          margin: const EdgeInsets.symmetric(
+            vertical: 10,
+          ),
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          child: ListTile(
+            title: Text(
+              listArticulos[index].name,
+              style: const TextStyle(fontSize: 24),
+            ),
+            trailing: Text(
+              listArticulos[index].description,
+              style: const TextStyle(fontSize: 24),
+            ),
+          ),
         );
+      },
+    );
   }
 
   @override
