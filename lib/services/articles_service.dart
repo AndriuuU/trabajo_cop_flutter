@@ -14,8 +14,6 @@ class GetArticulos extends ChangeNotifier {
   
 
   GetArticulos() {
-     
-
     this.getListArticulos();
   }
 

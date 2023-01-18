@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trabajo_cop_flutter/screens/listado_pedidos.dart';
 import 'package:trabajo_cop_flutter/screens/screens.dart';
 import 'package:trabajo_cop_flutter/services/pedidos_service.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
@@ -17,7 +16,6 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UsersListService()),
         ChangeNotifierProvider(create: (_) => GetArticulos()),
         ChangeNotifierProvider(create: (_) => GetPedidos()),
-        
       ],
       child: MyApp(),
     );
@@ -37,7 +35,6 @@ class MyApp extends StatelessWidget {
         'admin': (_) => AdminScreen(),
         'catalogo': (_) => CatalogoScreen(),
         'pedidos': (_) => PedidosScreen(),
-        'listadoPedidos': (_) => ListadoPedidos(),
       },
       theme:
           ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),

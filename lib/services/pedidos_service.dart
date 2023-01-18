@@ -6,13 +6,15 @@ import '../models/pedidos_response.dart';
 import 'auth_service.dart';
 
 class GetPedidos extends ChangeNotifier {
+  
   final String _baseUrl = 'semillero.allsites.es';
+  List<Pedidos> listPedidos = [];
 
   GetPedidos() {
     this.getListPedidos();
   }
 
-  List<Pedidos> listPedidos = [];
+  
 
   getListPedidos() async {
     String token = await AuthService().readToken();
@@ -24,9 +26,14 @@ class GetPedidos extends ChangeNotifier {
     });
     //final Map<String, dynamic> decodedResp = json.decode(resp.body);
     var a = PedidosResponse.fromJson(resp.body);
-
+    print(resp.body);
     // for(int a=0;a<decodeResp.data.length;a++){
-    listPedidos = a.data;
+      if(a.success==true){
+        
+        listPedidos = a.data;
+      }
+    
+    
     // print(listPedidos);
 
     // }
