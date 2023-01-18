@@ -25,22 +25,57 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
       controller: _homeController,
       itemCount: listArticulos.length,
       itemBuilder: (context, index) {
+        
         return Card(
-          margin: const EdgeInsets.symmetric(
-            vertical: 10,
-          ),
-          color: Theme.of(context).colorScheme.surfaceVariant,
-          child: ListTile(
-            title: Text(
-              listArticulos[index].name,
-              style: const TextStyle(fontSize: 24),
-            ),
-            trailing: Text(
-              listArticulos[index].description,
-              style: const TextStyle(fontSize: 24),
-            ),
-          ),
-        );
+
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+             
+              margin: EdgeInsets.all(15),
+              
+              elevation: 10,
+
+              child: Column(
+                children: <Widget>[
+
+                  ListTile(
+                    // if(listArticulos[index].deleted==0)
+                      contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 20),
+                      title: Text('Articulo: '+listArticulos[index].name),
+                      subtitle: Text(listArticulos[index].description+
+                      '\nPrecio maximo: '+listArticulos[index].price_max+
+                      '\nPrecio minimo: '+listArticulos[index].price_min+
+                      '\nTamaño : '+listArticulos[index].size+
+                      '\nWeight : '+listArticulos[index].weight),
+                      
+                      leading: Icon(Icons.send_sharp),
+                      iconColor: Color.fromARGB(255, 0, 167, 200),
+                    
+                    // iconColor: (listPedidos[index].delivery_notes==0) ? Color.fromRGBO(200, 0, 0, 1) : Color.fromARGB(255, 59, 193, 73),
+
+                   
+                    
+                    // leading: (listPedidos[index].delivery_notes==0) ? 'Eligible for license' : 'Not eligible'
+                    
+                    // if(listPedidos[index].delivery_notes==0) {
+
+                    // }
+                  ),
+                  
+                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      // (listPedidos[index].delivery_notes==0) ? Icon(Icons.short_text, color: Color.fromRGBO(200, 0, 0, 1)) : Icon(Icons.short_text, color: Color.fromARGB(255, 59, 193, 73)),
+                      // (listPedidos[index].invoices==0) ? Icon(Icons.speaker_notes_rounded, color: Color.fromRGBO(200, 0, 0, 1)) : Icon(Icons.speaker_notes_rounded, color: Color.fromARGB(255, 59, 193, 73)),
+                      // // Icon(icon): (listPedidos[index].delivery_notes==0) ? Color.fromRGBO(200, 0, 0, 1) : Color.fromARGB(255, 59, 193, 73),
+
+                      // FlatButton(onPressed: () => {}, child: Text('Aceptar')),
+                      // FlatButton(onPressed: () => {}, child: Text('Cancelar'))
+                    ],
+                  )
+                ],
+              ),
+            );
       },
     );
   }
@@ -49,8 +84,13 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Catálogo'),
-      ),
+            leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'home')
+          ),
+            title: Text("Catalogo"),
+            backgroundColor: Color.fromARGB(255, 93, 109, 236)
+          ),
       body: _listViewBody(context),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[

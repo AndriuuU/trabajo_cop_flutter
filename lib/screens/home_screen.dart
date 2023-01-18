@@ -7,6 +7,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        backgroundColor: Color.fromARGB(255, 93, 109, 236)
       ),
       body: Center(
         child: Column(

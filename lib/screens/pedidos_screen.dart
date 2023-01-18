@@ -8,8 +8,9 @@ import '../services/services.dart';
 class PedidosScreen extends StatefulWidget {
   PedidosScreen({Key? key}) : super(key: key);
 
+
   @override
-  State<PedidosScreen> createState() => _PedidosScreenState();
+    State<PedidosScreen> createState() => _PedidosScreenState();
 }
 
 class _PedidosScreenState extends State<PedidosScreen> {
@@ -24,37 +25,30 @@ class _PedidosScreenState extends State<PedidosScreen> {
       
       home: Scaffold(
         appBar: AppBar(
-        title: Text('Pedidos'),
-        ),
+            leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'home')
+          ),
+            title: Text("Pedidos"),
+            backgroundColor: Color.fromARGB(255, 93, 109, 236)
+          ),
+        
         body: ListView.builder(
           itemCount: listPedidos.length,
           itemBuilder: (BuildContext context, int index) {
             
               return Card(
     
-              // Con esta propiedad modificamos la forma de nuestro card
-              // Aqui utilizo RoundedRectangleBorder para proporcionarle esquinas circulares al Card
+
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              
-              // Con esta propiedad agregamos margen a nuestro Card
-              // El margen es la separación entre widgets o entre los bordes del widget padre e hijo
+             
               margin: EdgeInsets.all(15),
               
-              // Con esta propiedad agregamos elevación a nuestro card
-              // La sombra que tiene el Card aumentará
               elevation: 10,
 
-              // La propiedad child anida un widget en su interior
-              // Usamos columna para ordenar un ListTile y una fila con botones
               child: Column(
                 children: <Widget>[
-// Expanded(
-//       child: Image(
-//         image: NetworkImage('https://avatars.githubusercontent.com/u/109951?s=400&v=4'),
-//         height: 140,
-//       ),
-//     ),
-//                   // Usamos ListTile para ordenar la información del card como titulo, subtitulo e icono
+
                   ListTile(
                     contentPadding: EdgeInsets.fromLTRB(15, 10, 35, 10),
                     title: Text('Numero de Pedido: '+listPedidos[index].num.toString()),
@@ -74,7 +68,7 @@ class _PedidosScreenState extends State<PedidosScreen> {
                     // }
                   ),
                   
-                  // Usamos una fila para ordenar los botones del card
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -95,6 +89,4 @@ class _PedidosScreenState extends State<PedidosScreen> {
     );
   }
 }
-
-
 
