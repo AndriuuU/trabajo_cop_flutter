@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:trabajo_cop_flutter/models/invoice.dart';
-import 'package:trabajo_cop_flutter/models/pages/pdfexport/pdf/pdfexport.dart';
+import 'package:trabajo_cop_flutter/models/pdfinvoice/pdfexport/pdf/pdfexport.dart';
 import 'package:printing/printing.dart';
-import 'package:trabajo_cop_flutter/models/pages/pdfexport/pdfpreview.dart';
+import 'package:trabajo_cop_flutter/models/pdfinvoice/pdfexport/pdfpreview.dart';
 
 import '../invoice.dart';
 

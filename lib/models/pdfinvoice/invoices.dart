@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:trabajo_cop_flutter/models/invoice.dart';
-import 'package:trabajo_cop_flutter/models/pages/detail.dart';
+import 'package:trabajo_cop_flutter/models/pdfinvoice/detail.dart';
 
 import '../invoice.dart';
 import 'detail.dart';
