@@ -26,7 +26,7 @@ class GetPedidos extends ChangeNotifier {
     });
     //final Map<String, dynamic> decodedResp = json.decode(resp.body);
     var a = PedidosResponse.fromJson(resp.body);
-    print(resp.body);
+    
     // for(int a=0;a<decodeResp.data.length;a++){
       if(a.success==true){
         

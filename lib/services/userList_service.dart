@@ -18,12 +18,37 @@ final String _baseUrl='salesin.allsites.es';
     List<DataUser> listUsers=[];
     
     getListUsers() async {
-      
+      String token = await AuthService().readToken();
+
       final url = Uri.http(_baseUrl, '/public/api/users');
-      final resp = await http.get(url);
+       final resp = await http.get(url,
+        headers: {
+          'Accept': 'application/json',
+          "Authorization": "Bearer $token"
+        });
+
       var decodeResp = User.fromJson(resp.body);
   
-        listUsers=decodeResp.data;
+      listUsers=decodeResp.data;
+     
+      notifyListeners();
+    }
+
+    List<DataUser> listDataUsers=[];
+    getDataUser(String id) async {
+      String token = await AuthService().readToken();
+
+      final url = Uri.http(_baseUrl, '/public/api/users/'+id);
+       final resp = await http.get(url,
+        
+        headers: {
+          'Accept': 'application/json',
+          "Authorization": "Bearer $token"
+        });
+
+      var decodeResp = User.fromJson(resp.body);
+  
+      listDataUsers=decodeResp.data;
      
       notifyListeners();
     }

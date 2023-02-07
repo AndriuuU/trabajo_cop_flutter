@@ -19,10 +19,11 @@ class _PedidosScreenState extends State<PedidosScreen> {
   @override
   Widget build(BuildContext context) {
     final getPedidos = Provider.of<GetPedidos>(context);
+    
     List<Pedidos> listPedidos = getPedidos.listPedidos;
     
     return MaterialApp(
-      
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
             leading: IconButton(
@@ -31,6 +32,13 @@ class _PedidosScreenState extends State<PedidosScreen> {
           ),
             title: Text("Pedidos"),
             backgroundColor: Color.fromARGB(255, 93, 109, 236)
+          ),
+
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+               Navigator.pushReplacementNamed(context, 'addpedidos');
+            },
+            child: const Icon(Icons.add),
           ),
         
         body: ListView.builder(
@@ -83,6 +91,7 @@ class _PedidosScreenState extends State<PedidosScreen> {
                 ],
               ),
             );
+            
           },
         ),
       ),

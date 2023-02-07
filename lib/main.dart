@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
         'admin': (_) => AdminScreen(),
         'catalogo': (_) => CatalogoScreen(),
         'pedidos': (_) => PedidosScreen(),
+        'addpedidos': (_) => AddPedidosScreen(),
       },
       theme:
           ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),
