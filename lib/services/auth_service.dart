@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -62,7 +63,7 @@ class AuthService extends ChangeNotifier {
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
     if (decodeResp.containsValue(true)) {
       await storage.write(key: 'token', value: decodeResp['data']['token']);
-
+      await storage.write(key: 'id', value: decodeResp['data']['id'].toString());
       // print(decodeResp['data']['token']);
       return decodeResp['data']['type'];
     } else {
@@ -95,9 +96,15 @@ class AuthService extends ChangeNotifier {
     //   return null;
     // }
   // }
+
   Future<String> readToken() async {
     
     return await storage.read(key: 'token') ?? '';
+    
+  }
+  Future<String> readId() async {
+    
+    return await storage.read(key: 'id') ?? '';
     
   }
 }

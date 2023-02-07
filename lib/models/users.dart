@@ -2,12 +2,12 @@ import 'dart:convert';
 
 class User {
   User({
-    required this.success,
+    this.success,
     required this.data,
     required this.message,
   });
 
-  bool success;
+  bool? success;
   List<DataUser> data;
   String message;
 

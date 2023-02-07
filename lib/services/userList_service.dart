@@ -2,57 +2,59 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:trabajo_cop_flutter/models/user_data_models.dart';
 import '../models/users.dart';
 import 'auth_service.dart';
 import 'package:http/http.dart' as http;
 
 class UsersListService extends ChangeNotifier {
 
-final String _baseUrl='salesin.allsites.es';
+final String _baseUrl='semillero.allsites.es';
   
     UsersListService() {
       
-      this.getListUsers();
+      // this.getListUsers();
+      this.getDataUser();
     }
 
-    List<DataUser> listUsers=[];
+    // List<DataUser> listUsers=[];
     
-    getListUsers() async {
-      String token = await AuthService().readToken();
+    // getListUsers() async {
+    //   String token = await AuthService().readToken();
 
-      final url = Uri.http(_baseUrl, '/public/api/users');
-       final resp = await http.get(url,
+    //   final url = Uri.http(_baseUrl, '/public/api/users');
+    //    final resp = await http.get(url,
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       "Authorization": "Bearer $token"
+    //     });
+
+    //   var decodeResp = User.fromJson(resp.body);
+  
+    //   listUsers=decodeResp.data;
+     
+    //   notifyListeners();
+    // }
+
+    
+    getDataUser() async {
+      String token = await AuthService().readToken();
+      String id = await AuthService().readId();
+     
+      final url = Uri.http(_baseUrl, '/public/api/user/$id');
+      final resp = await http.get(url,
         headers: {
           'Accept': 'application/json',
           "Authorization": "Bearer $token"
         });
-
-      var decodeResp = User.fromJson(resp.body);
-  
-      listUsers=decodeResp.data;
-     
-      notifyListeners();
-    }
-
-    List<DataUser> listDataUsers=[];
-    getDataUser(String id) async {
-      String token = await AuthService().readToken();
-
-      final url = Uri.http(_baseUrl, '/public/api/users/'+id);
-       final resp = await http.get(url,
-        
-        headers: {
-          'Accept': 'application/json',
-          "Authorization": "Bearer $token"
-        });
-
-      var decodeResp = User.fromJson(resp.body);
-  
-      listDataUsers=decodeResp.data;
-     
-      notifyListeners();
-    }
+      
+      var decodeResp = UserData.fromJson(resp.body);
     
+      ListDataUsers=decodeResp.data;
+      
+      notifyListeners();
+    }
+    Data? ListDataUsers;
 
 
   // final String _baseUrl = 'salesin.allsites.es';

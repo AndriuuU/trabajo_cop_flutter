@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trabajo_cop_flutter/screens/screens.dart';
 import 'package:trabajo_cop_flutter/services/pedidos_service.dart';
+import 'package:trabajo_cop_flutter/services/producto_service.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
 
 void main() => runApp(AppState());
@@ -16,6 +17,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UsersListService()),
         ChangeNotifierProvider(create: (_) => GetArticulos()),
         ChangeNotifierProvider(create: (_) => GetPedidos()),
+        ChangeNotifierProvider(create: (_) => ProductoService()),
       ],
       child: MyApp(),
     );
