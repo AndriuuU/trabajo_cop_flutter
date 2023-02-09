@@ -107,3 +107,13 @@ class PdfGenerator {
     await file.writeAsBytes(pdf.save());
   }
 }
+
+// body: Center(
+//         child: FlatButton(
+//           child: Text('Generate PDF'),
+//           onPressed: () async {
+//             await generatePdf('example.pdf');
+//           },
+//         ),
+//       ),
+//esto es lo que habria que meterle al boton de 'generar pdf'
