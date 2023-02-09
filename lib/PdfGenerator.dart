@@ -141,8 +141,8 @@ Future<void> main() async {
 //         child: FlatButton(
 //           child: Text('Generate PDF'),
 //           onPressed: () async {
-//             await generatePdf('example.pdf');
+//             ...
 //           },
 //         ),
 //       ),
-//esto es lo que habria que meterle al boton de 'generar pdf'
+//esto es lo que habria que meterle al boton de 'generar pdf', lo del future void main
