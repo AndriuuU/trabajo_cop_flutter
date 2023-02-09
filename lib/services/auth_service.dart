@@ -64,6 +64,7 @@ class AuthService extends ChangeNotifier {
     if (decodeResp.containsValue(true)) {
       await storage.write(key: 'token', value: decodeResp['data']['token']);
       await storage.write(key: 'id', value: decodeResp['data']['id'].toString());
+      
       // print(decodeResp['data']['token']);
       return decodeResp['data']['type'];
     } else {
@@ -107,6 +108,7 @@ class AuthService extends ChangeNotifier {
     return await storage.read(key: 'id') ?? '';
     
   }
+  
 }
  
 

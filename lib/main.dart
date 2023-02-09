@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trabajo_cop_flutter/screens/screens.dart';
+import 'package:trabajo_cop_flutter/services/buscar_catalogo_service.dart';
 import 'package:trabajo_cop_flutter/services/pedidos_service.dart';
 import 'package:trabajo_cop_flutter/services/producto_service.dart';
 import 'package:trabajo_cop_flutter/services/services.dart';
@@ -18,6 +19,8 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => GetArticulos()),
         ChangeNotifierProvider(create: (_) => GetPedidos()),
         ChangeNotifierProvider(create: (_) => ProductoService()),
+        ChangeNotifierProvider(create: (_) => BuscarCatalogoService()),
+
       ],
       child: MyApp(),
     );
