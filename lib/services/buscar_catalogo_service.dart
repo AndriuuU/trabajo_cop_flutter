@@ -6,22 +6,29 @@ import 'package:http/http.dart' as http;
 
 import '../models/Productos_model.dart';
 
+import '../screens/add_pedidos_screen.dart';
 import 'services.dart';
 
-class ProductoService extends ChangeNotifier {
+class BuscarCatalogoService extends ChangeNotifier {
     
     final String _baseUrl='semillero.allsites.es';
-  
-    ProductoService() {
+     bool isLoading = true;
+    BuscarCatalogoService() {
       
-      this.getProcuto();
+      this.getCatalogo();
     }
 
     List<Datum> listPedidos=[];
+
+  
     
-    getProcuto() async {
+    getCatalogo() async {
+      
       String token = await AuthService().readToken();
-      String company_id= await UsersListService().readCompany_id();
+      AddPedidosScreen1 sa=new AddPedidosScreen1();
+      int? company_id= sa.cicleId;
+      if(company_id!=null){
+
       print(company_id);
       // final ContrainsCiclos contra=ContrainsCiclos();
       // String id=contra.cicleId.toString();
@@ -40,17 +47,18 @@ class ProductoService extends ChangeNotifier {
         body: json.encode(catalogData),
       );
       
-      
       var decodeResp = Pedidos.fromJson(resp.body);
 
         print(decodeResp.data);
       // for(int a=0;a<decodeResp.data.length;a++){
         listPedidos=decodeResp.data;
-        
+        isLoading=false;
       // }
       //print(listciclos);
      
       notifyListeners();
+      }else
+      print("Es nulo");
     }
     
 }

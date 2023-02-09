@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:trabajo_cop_flutter/models/user_data_models.dart';
 import '../models/users.dart';
 import 'auth_service.dart';
 import 'package:http/http.dart' as http;
 
 class UsersListService extends ChangeNotifier {
-
+final storage = FlutterSecureStorage();
 final String _baseUrl='semillero.allsites.es';
   
     UsersListService() {
@@ -49,13 +50,17 @@ final String _baseUrl='semillero.allsites.es';
         });
       
       var decodeResp = UserData.fromJson(resp.body);
-    
+      final Map<String, dynamic> decodeRespCompany = json.decode(resp.body);
+      
+      await storage.write(key: 'company_id', value: decodeRespCompany['data']['company_id'].toString());
+      
       ListDataUsers=decodeResp.data;
       
       notifyListeners();
     }
     Data? ListDataUsers;
 
+  
 
   // final String _baseUrl = 'salesin.allsites.es';
   
@@ -87,4 +92,9 @@ final String _baseUrl='semillero.allsites.es';
 
   //   return users;
   // }
+  Future<String> readCompany_id() async {
+    
+    return await storage.read(key: 'company_id') ?? '';
+    
+  }
 }
