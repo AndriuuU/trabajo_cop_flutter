@@ -138,11 +138,12 @@ Future<void> main() async {
 
 
 // body: Center(
-//         child: FlatButton(
-//           child: Text('Generate PDF'),
-//           onPressed: () async {
-//             ...
-//           },
-//         ),
-//       ),
+//          child: FlatButton(
+//            child: Text('Generate PDF'),
+//            onPressed: () async {
+//               await PdfGenerator().generate('path/to/your/pdf/file.pdf');
+//               await sendPdf('path/to/your/pdf/file.pdf');
+//            },
+//          ),
+//        ),
 //esto es lo que habria que meterle al boton de 'generar pdf', lo del future void main
