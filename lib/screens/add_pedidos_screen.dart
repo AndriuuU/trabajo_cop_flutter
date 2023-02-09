@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trabajo_cop_flutter/PdfGenerator.dart';
 import 'package:trabajo_cop_flutter/ui/input_decorations.dart';
 
 import '../models/Productos_model.dart';
@@ -69,8 +70,11 @@ class AddPedidosScreen1 extends State<AddPedidosScreen> {
           
          
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
+            onPressed: () async {
+              await PdfGenerator().generate('path/to/your/pdf/file.pdf');
+              await sendPdf('path/to/your/pdf/file.pdf');
               
+            
             },
             child: const Icon(Icons.add),
           ),
