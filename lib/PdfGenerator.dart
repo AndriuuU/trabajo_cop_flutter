@@ -1,7 +1,8 @@
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'dart:io';
-import 'package:email_launcher/email_launcher.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+
 
 class PdfGenerator {
   Future<void> generate(String path) async {
@@ -110,14 +111,24 @@ class PdfGenerator {
 }
 
 Future<void> sendPdf(String path) async {
-  final file = await File(path).readAsBytes();
-  await EmailLauncher.launch(
-    to: 'to@example.com', //email del usuario
-    subject: 'Flutter PDF',
-    body: 'Generated pdf',
-    attachmentPath: 'file.pdf',
-    attachmentData: file,
-  );
+  final Email email = Email(
+                            body: 'Here is a copy of the order.',
+                            subject: 'Order made successfully',
+                            recipients: ['raulreyes@cadiz.salesianos.edu'],
+                            attachmentPaths: [
+                              'path/to/your/pdf/file.pdf'
+                            ],
+                            isHTML: false,
+                          );
+
+                          String platformResponse;
+
+                          try {
+                            await FlutterEmailSender.send(email);
+                            platformResponse = 'success';
+                          } catch (error) {
+                            platformResponse = error.toString();
+                          }
  
 }
 
