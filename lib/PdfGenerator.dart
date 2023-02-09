@@ -1,6 +1,7 @@
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'dart:io';
+import 'package:email_launcher/email_launcher.dart';
 
 class PdfGenerator {
   Future<void> generate(String path) async {
@@ -107,6 +108,24 @@ class PdfGenerator {
     await file.writeAsBytes(pdf.save());
   }
 }
+
+Future<void> sendPdf(String path) async {
+  final file = await File(path).readAsBytes();
+  await EmailLauncher.launch(
+    to: 'to@example.com', //email del usuario
+    subject: 'Flutter PDF',
+    body: 'Generated pdf',
+    attachmentPath: 'file.pdf',
+    attachmentData: file,
+  );
+ 
+}
+
+Future<void> main() async {
+  await PdfGenerator().generate('path/to/your/pdf/file.pdf');
+  await sendPdf('path/to/your/pdf/file.pdf');
+}
+
 
 // body: Center(
 //         child: FlatButton(
