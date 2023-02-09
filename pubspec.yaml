@@ -32,7 +32,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  pdf: 
+  pdf: ^1.7.0+1
+  flutter_email_sender: ^1.0.0
   printing: 
   flutter_secure_storage: ^6.0.0
   http: ^0.13.5
