@@ -115,10 +115,8 @@ Future<void> sendPdf(String path) async {
                             body: 'Here is a copy of the order.',
                             subject: 'Order made successfully',
                             recipients: ['raulreyes@cadiz.salesianos.edu'],
-                            attachmentPaths: [
+                            attachmentPath: 
                               'path/to/your/pdf/file.pdf'
-                            ],
-                            isHTML: false,
                           );
 
                           String platformResponse;
@@ -136,6 +134,7 @@ Future<void> main() async {
   await PdfGenerator().generate('path/to/your/pdf/file.pdf');
   await sendPdf('path/to/your/pdf/file.pdf');
 }
+
 
 
 // body: Center(
