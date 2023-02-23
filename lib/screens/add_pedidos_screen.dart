@@ -71,8 +71,8 @@ class AddPedidosScreen1 extends State<AddPedidosScreen> {
          
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              await PdfGenerator().generate('path/to/your/pdf/file.pdf');
-              await sendPdf('path/to/your/pdf/file.pdf');
+              // await PdfGenerator().generate('path/to/your/pdf/file.pdf');
+              // await sendPdf('path/to/your/pdf/file.pdf');
               
             
             },

@@ -24,6 +24,12 @@ class HomeScreen extends StatelessWidget {
               },
               child: Text('Pedidos'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, 'gestion');
+              },
+              child: Text('Gestion Admin'),
+            ),
           ],
         ),
       ),

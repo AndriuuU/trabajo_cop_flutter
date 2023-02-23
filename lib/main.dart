@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trabajo_cop_flutter/screens/admin_grafica_screen.dart';
+import 'package:trabajo_cop_flutter/screens/grafica_screen.dart';
 import 'package:trabajo_cop_flutter/screens/screens.dart';
 import 'package:trabajo_cop_flutter/services/buscar_catalogo_service.dart';
 import 'package:trabajo_cop_flutter/services/orders_service.dart';
@@ -44,6 +46,8 @@ class MyApp extends StatelessWidget {
         'catalogo': (_) => CatalogoScreen(),
         'pedidos': (_) => PedidosScreen(),
         'addpedidos': (_) => AddPedidosScreen(),
+        'gestion': (_)=> adminGraficaScreen(),
+        'grafica': (_)=> GraficaScreen(),
       },
       theme:
           ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.grey[300]),
