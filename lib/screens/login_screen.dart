@@ -118,7 +118,7 @@ class _LoginForn extends StatelessWidget {
                             Navigator.pushReplacementNamed(context, 'home');
                           } else if (errorMessage == "a") {
                             //Menu admin
-                            Navigator.pushReplacementNamed(context, 'admin');
+                            Navigator.pushReplacementNamed(context, 'graphs');
                           }
                         } else {
                           print('Error con el usuario o contraseña');

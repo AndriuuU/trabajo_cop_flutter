@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, 'gestion');
+                Navigator.pushReplacementNamed(context, 'graphs');
               },
               child: Text('Gestion Admin'),
             ),
